@@ -1,3 +1,10 @@
+// Import Components
+import { FormGenerator } from '../components/form/index';
+
 export function App() {
-	return <div className="text-white">Hello</div>;
+	return (
+		<>
+			<FormGenerator />
+		</>
+	);
 }
