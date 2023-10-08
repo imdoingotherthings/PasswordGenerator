@@ -7,8 +7,9 @@ import { generator } from '../generator/index.js';
 export const FormGenerator = () => {
 	// use local state
 	const [val, setVal] = useState('');
-	const [rng, setRng] = useState(6);
-	const [copy, setCopy] = useState('');
+	const [rng, setRng] = useState(12);
+	const [copied, setCopied] = useState(false);
+	const [copiedFeedback, setCopiedFeedback] = useState('Copy');
 
 	// set generated password to local state
 	const gen = () => {
@@ -29,19 +30,28 @@ export const FormGenerator = () => {
 		return setRng(e.target.value);
 	};
 
-	// copy password if there is a password generated
-	const copyPswd = () => {
-		if (val !== '') {
-			return setCopy(val);
-		}
+	// timing function to reset the status of the copied state
+	const feedbackTimer = () => {
+		// first set the copied state to true & set copied text status
+		setCopied(true);
+		setCopiedFeedback('Copied!');
+
+		// then after 5 seconds, reset the copied state to false & copied text status to copy
+		return setTimeout(() => {
+			setCopied(false);
+			return setCopiedFeedback('Copy');
+		}, 5000);
 	};
 
-	if (copy !== '') {
-		window.navigator.clipboard
-			.writeText(copy)
-			.then(() => 'success')
-			.catch(() => 'unsuccessfull');
-	}
+	// copy password to clipboard if there is a password generated
+	const copyPswd = () => {
+		if (val !== '') {
+			return window.navigator.clipboard
+				.writeText(val)
+				.then(() => feedbackTimer())
+				.catch(() => null);
+		}
+	};
 
 	return (
 		<div className="bg-white">
@@ -49,7 +59,7 @@ export const FormGenerator = () => {
 			<p className="border border-black rounded-lg">{showPass()}</p>
 
 			<div>
-				<input onChange={e => passwordRange(e)} type="range" name="password" id="password" value={rng} min={6} max={30} step={3} />
+				<input onChange={e => passwordRange(e)} type="range" name="password" id="password" value={rng} min={12} max={18} step={2} />
 				<label htmlFor="password">Password Length: {rng}</label>
 			</div>
 
@@ -57,7 +67,7 @@ export const FormGenerator = () => {
 				Generate
 			</button>
 			<button onClick={() => copyPswd()} className="block border border-black rounded-lg p-2">
-				Copy
+				{copiedFeedback}
 			</button>
 		</div>
 	);
