@@ -20,7 +20,7 @@ export const PasswordStrength = state => {
 	};
 
 	const gridSlider = () => {
-		const defaultClass = 'h-1 w-3/4 rounded-lg bg-zinc-300';
+		const defaultClass = 'h-1 w-3/4 rounded-lg bg-zinc-400';
 
 		const lvl1SliderClass = 'h-1 w-3/4 rounded-lg bg-emerald-900';
 		const lvl4SliderClass = 'h-1 w-3/4 rounded-lg bg-emerald-200';
@@ -28,14 +28,14 @@ export const PasswordStrength = state => {
 		const lvl2SliderClass = 'h-1 w-3/4 rounded-lg bg-emerald-800';
 
 		return (
-			<div className="text-center mx-auto px-10">
-				<div className="grid grid-cols-4">
+			<div className="text-center mx-auto px-10 py-4">
+				<div className="grid grid-cols-4 justify-items-center">
 					<div className={rng >= 12 ? lvl1SliderClass : defaultClass}></div>
 					<div className={rng >= 14 ? lvl2SliderClass : defaultClass}></div>
 					<div className={rng >= 16 ? lvl3SliderClass : defaultClass}></div>
 					<div className={rng >= 18 ? lvl4SliderClass : defaultClass}></div>
 				</div>
-				<p className="font-bold text-xs my-2">{strengthText(rng)}</p>
+				<p className="font-bold text-xs py-4">{strengthText(rng)}</p>
 			</div>
 		);
 	};
