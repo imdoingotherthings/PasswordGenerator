@@ -60,29 +60,44 @@ export const FormGenerator = () => {
 
 	return (
 		<div className="mx-auto px-10">
-			<div className="bg-white p-6 my-40 rounded-lg">
+			<div className="bg-zinc-500 p-6 my-40 rounded-lg shadow-xl">
 				<div className="my-2">
-					<h1>Password Generator</h1>
-					<hr className="w-full" />
+					<p className="text-2xl font-bold text-center">Password Generator</p>
+					<hr className="w-full border-black" />
 				</div>
 
-				<p className="">{showPass()}</p>
+				<div className="my-4 font-semibold text-center">
+					<p className="">{showPass()}</p>
+					<hr className="w-full border-black" />
+				</div>
 
 				<div className="my-2">
 					<small>
 						<b>Password Length: {rng}</b>
 					</small>
-					<input className="w-full" onChange={e => passwordRange(e)} type="range" name="password" id="password" value={rng} min={12} max={18} step={2} />
+					<input
+						className="w-full outline-none appearance-none rounded-lg h-1 bg-zinc-600 cursor-pointer my-2"
+						onChange={e => passwordRange(e)}
+						type="range"
+						name="password"
+						id="password"
+						value={rng}
+						min={12}
+						max={18}
+						step={2}
+					/>
 				</div>
 
 				<PasswordStrength rng={rng} />
 
-				<button onClick={() => gen()} className="block border border-black rounded-lg p-2">
-					Generate
-				</button>
-				<button onClick={() => copyPswd()} className="block border border-black rounded-lg p-2">
-					{copiedFeedback}
-				</button>
+				<div className="grid grid-cols-2 gap-4 my-3 px-3">
+					<button onClick={() => gen()} className="block border border-black rounded-lg p-2">
+						Generate
+					</button>
+					<button onClick={() => copyPswd()} className="block border border-black rounded-lg p-2">
+						{copiedFeedback}
+					</button>
+				</div>
 			</div>
 		</div>
 	);

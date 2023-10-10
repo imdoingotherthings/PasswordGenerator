@@ -7,13 +7,13 @@ export const PasswordStrength = state => {
 	const strengthText = () => {
 		switch (rng) {
 			case 12:
-				return <h2>Average</h2>;
+				return 'Average';
 			case 14:
-				return <h2>Moderately Strong</h2>;
+				return 'Moderately Strong';
 			case 16:
-				return <h2>Strong</h2>;
+				return 'Strong';
 			case 18:
-				return <h2>Very Strong</h2>;
+				return 'Very Strong';
 			default:
 				return null;
 		}
@@ -35,7 +35,7 @@ export const PasswordStrength = state => {
 					<div className={rng >= 16 ? lvl3SliderClass : defaultClass}></div>
 					<div className={rng >= 18 ? lvl4SliderClass : defaultClass}></div>
 				</div>
-				{strengthText(rng)}
+				<p className="font-bold text-xs my-2">{strengthText(rng)}</p>
 			</div>
 		);
 	};
