@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 // Import Modules
 import { generator } from '../generator/index.js';
+import { PasswordStrength } from '../PasswordStrength/index.jsx';
 
 export const FormGenerator = () => {
 	// use local state
@@ -21,7 +22,11 @@ export const FormGenerator = () => {
 		if (val !== '') {
 			return <>{val}</>;
 		} else {
-			return <i>generate password</i>;
+			return (
+				<small>
+					<i>generate password</i>
+				</small>
+			);
 		}
 	};
 
@@ -54,21 +59,31 @@ export const FormGenerator = () => {
 	};
 
 	return (
-		<div className="bg-white">
-			<h1>Password Generator</h1>
-			<p className="border border-black rounded-lg">{showPass()}</p>
+		<div className="mx-auto px-10">
+			<div className="bg-white p-6 my-40 rounded-lg">
+				<div className="my-2">
+					<h1>Password Generator</h1>
+					<hr className="w-full" />
+				</div>
 
-			<div>
-				<input onChange={e => passwordRange(e)} type="range" name="password" id="password" value={rng} min={12} max={18} step={2} />
-				<label htmlFor="password">Password Length: {rng}</label>
+				<p className="">{showPass()}</p>
+
+				<div className="my-2">
+					<small>
+						<b>Password Length: {rng}</b>
+					</small>
+					<input className="w-full" onChange={e => passwordRange(e)} type="range" name="password" id="password" value={rng} min={12} max={18} step={2} />
+				</div>
+
+				<PasswordStrength rng={rng} />
+
+				<button onClick={() => gen()} className="block border border-black rounded-lg p-2">
+					Generate
+				</button>
+				<button onClick={() => copyPswd()} className="block border border-black rounded-lg p-2">
+					{copiedFeedback}
+				</button>
 			</div>
-
-			<button onClick={() => gen()} className="block border border-black rounded-lg p-2">
-				Generate
-			</button>
-			<button onClick={() => copyPswd()} className="block border border-black rounded-lg p-2">
-				{copiedFeedback}
-			</button>
 		</div>
 	);
 };
