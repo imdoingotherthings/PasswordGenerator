@@ -28,7 +28,7 @@ export const PasswordStrength = state => {
 		const lvl2SliderClass = 'h-1 w-3/4 rounded-lg bg-emerald-800';
 
 		return (
-			<div className="text-center mx-auto px-10 py-4">
+			<div className="text-center mx-auto px-10 py-4 lg:px-60">
 				<div className="grid grid-cols-4 justify-items-center">
 					<div className={rng >= 12 ? lvl1SliderClass : defaultClass}></div>
 					<div className={rng >= 14 ? lvl2SliderClass : defaultClass}></div>

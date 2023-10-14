@@ -22,7 +22,7 @@ export const FormGenerator = () => {
 		if (val !== '') {
 			return <>{val}</>;
 		} else {
-			return <span className="block text-sm font-semibold">click generate for a new password</span>;
+			return <span className="block text-sm font-thin">click "generate" for a new password</span>;
 		}
 	};
 
@@ -55,20 +55,19 @@ export const FormGenerator = () => {
 	};
 
 	return (
-		<div className="mx-auto px-12 md:px-18 lg:px-20">
-			<div className=" py-4 px-10 my-40 rounded-lg bg-stone-300 ">
-				<div className=" rounded-t-lg">
+		<div className="mx-auto px-12 md:px-18 lg:px-40">
+			<div className="py-4 px-10 mt-20 rounded-lg bg-stone-300 ">
+				<div>
 					<p className="text-2xl font-bold text-center text-black px-4 py-2">Password Generator</p>
-					{/* <hr className="w-full border-black" /> */}
 				</div>
 
-				<div className="h-full px-8 pt-14 pb-6 text-black">
+				<div className="h-full px-8 pt-14 pb-6 text-black lg:px-40">
 					<div className="font-medium text-center pb-6">
 						<p className="text-2xl">{showPass()}</p>
 						<hr className="mx-auto w-3/4 border-black" />
 					</div>
 
-					<div className="py-4">
+					<div className="py-4 md:px-12 lg:px-40">
 						<p className="text-center text-sm">Password Length</p>
 						<p className="text-center text-2xl font-bold">{rng}</p>
 						<input
@@ -87,7 +86,7 @@ export const FormGenerator = () => {
 					<PasswordStrength rng={rng} />
 				</div>
 
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-black py-6 px-4 rounded-b-lg justify-items-center">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-black py-6 px-4 rounded-b-lg justify-items-center lg:px-80">
 					<button
 						onClick={() => gen()}
 						className="block border border-black rounded-lg p-2 w-2/3 transition ease-in-out delay-100 hover:bg-emerald-700 hover:scale-110 hover:-translate-y-2 active:bg-stone-700 active:scale-110 active:-translate-y-2">
